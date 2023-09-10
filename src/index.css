@@ -13,6 +13,15 @@
     -moz-box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.04);
     box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.04);
   }
+  .f-bold {
+    font-family: "KalamehWeb-Bold";
+  }
+  .f-extraBold {
+    font-family: "KalamehWeb-ExtraBold";
+  }
+  .f-black {
+    font-family: "KalamehWeb-Black";
+  }
 }
 * {
   margin: 0;
@@ -20,10 +29,11 @@
   outline: 0;
   border: 0;
   box-sizing: border-box;
+  font-family: "KalamehWeb-Regular";
 }
 
 :root {
-  --bgColor: #f7f3fa;
+  --bgColor: #fafafa;
 }
 body {
   width: 100%;
