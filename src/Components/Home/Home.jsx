@@ -1,5 +1,3 @@
-// import { useProducts } from "../Provider/ProductsDataProvider";
-
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 

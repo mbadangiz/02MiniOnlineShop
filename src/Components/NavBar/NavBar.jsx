@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const navItemsList = [
   {
     id: 1,
-    navTitle: "لگوی مجموعه",
+    navTitle: "خوش استایل",
     extraClass: "!f-black !text-xl !text-sky-900 ",
     path: "/",
   },

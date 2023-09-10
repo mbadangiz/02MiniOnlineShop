@@ -22,6 +22,12 @@
   .f-black {
     font-family: "KalamehWeb-Black";
   }
+  .strok {
+    border: 7px dashed #082f49;
+  }
+  .bg-svg {
+    background-image: url("./Img/Img-Header3.svg");
+  }
 }
 * {
   margin: 0;
@@ -31,12 +37,25 @@
   box-sizing: border-box;
   font-family: "KalamehWeb-Regular";
 }
-
+textarea,
+input {
+  outline: 2px solid transparent !important;
+  resize: none;
+}
 :root {
   --bgColor: #fafafa;
+  color: #082f49;
 }
 body {
   width: 100%;
   height: 100%;
   background-color: var(--bgColor);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }

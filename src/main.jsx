@@ -5,6 +5,8 @@ import "./impCss.css";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./Components/Home/Home";
+import CMS from "./Components/CMS/CMS";
+import AddNewProducts from "./Components/AddNewProducts/AddNewProducts";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +14,14 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/gal", element: <h1>vkjdsnvksjdnvkjsdnkjvn</h1> },
+      {
+        path: "/cms",
+        element: <CMS />,
+        children: [
+          { path: "/cms/", element: "productsList" },
+          { path: "/cms/addNewProduct", element: <AddNewProducts /> },
+        ],
+      },
     ],
   },
 ]);
