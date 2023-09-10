@@ -6,21 +6,21 @@ import { createContext } from "react";
 const ProductData = createContext();
 
 const ProductsDataProvider = ({ children }) => {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([1, 2, 3, 54]);
 
-  const getData = async () => {
-    const url = "";
-    try {
-      const res = await axios.get(url);
-      setProducts(res.data);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
+  // const getData = async () => {
+  //   const url = "";
+  //   try {
+  //     const res = await axios.get(url);
+  //     setProducts(res.data);
+  //   } catch (error) {
+  //     console.log(error.response);
+  //   }
+  // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <ProductData.Provider value={{ products, setProducts }}>
