@@ -4,7 +4,7 @@ const navItemsList = [
   {
     id: 1,
     navTitle: "لگوی مجموعه",
-    extraClass: "!f-black !text-xl !text-gray-900 ",
+    extraClass: "!f-black !text-xl !text-sky-900 ",
     path: "/",
   },
   { id: 2, navTitle: "مدیریت محتوا", path: "/cms" },
@@ -28,7 +28,9 @@ const NavItems = ({ data }) => {
   const { navTitle, extraClass, path } = data;
   return (
     <Link to={path}>
-      <div className={`${extraClass} text-sm text-gray-700`}>{navTitle}</div>
+      <div className={`${extraClass}  text-sky-700 hover:text-sky-900`}>
+        {navTitle}
+      </div>
     </Link>
   );
 };
