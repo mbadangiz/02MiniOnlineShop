@@ -10,6 +10,7 @@ import AddNewProducts from "./Components/AddNewProducts/AddNewProducts";
 import CMSProductList from "./Components/CMSProductList/CMSProductList";
 import ProductsList from "./Components/ProductsList/ProductsList";
 import Header from "./Components/Header/Header";
+import ProductsDetail from "./Components/ProductsDetail/ProductsDetail";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +23,9 @@ const router = createBrowserRouter([
         children: [
           { path: "/", element: <Header /> },
           { path: "/products", element: <ProductsList /> },
+          { path: "/productDetail", element: <ProductsDetail /> },
         ],
       },
-
       {
         path: "/cms",
         element: <CMS />,
