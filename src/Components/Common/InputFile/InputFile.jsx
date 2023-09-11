@@ -1,4 +1,4 @@
-const InputFile = () => {
+const InputFile = ({ changeHandler }) => {
   return (
     <div className="w-[280px] h-28 relative rounded-lg">
       <label
@@ -14,6 +14,7 @@ const InputFile = () => {
         type="file"
         name=""
         id="imgUploader"
+        onChange={changeHandler}
         className="opacity-0 w-full h-full strok p-4 absolute top-0 left-0"
       />
     </div>
