@@ -9,13 +9,13 @@ import { useProducts } from "../Provider/ProductsDataProvider";
 import { useNavigate } from "react-router-dom";
 
 const FormContainer = () => {
-  const [img, setImg] = useState();
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState();
   const [uploadErr, setUploadErr] = useState(false);
   const { products, setProducts } = useProducts();
   const navigate = useNavigate();
 
-  const uploader = async () => {
+  const uploader = async (e) => {
+    const img = e.target.files[0];
     try {
       const imageData = new FormData();
       imageData.append("image", img);
@@ -30,7 +30,6 @@ const FormContainer = () => {
   };
 
   const submitHandler = async (val) => {
-    uploader();
     const date = new Date().toLocaleDateString("fa-IR", {
       year: "numeric",
       month: "long",
@@ -39,9 +38,8 @@ const FormContainer = () => {
       minute: "numeric",
       second: "numeric",
     });
-    const imgurl = imgUrl;
-    const obj = { ...val, imageUrl: imgurl, date: date };
-    const obj2 = { ...val, imageUrl: imgurl, date: date, id: products.length };
+    const obj = { ...val, imgSrc: imgUrl, date: date };
+    const obj2 = { ...val, imgSrc: imgUrl, date: date, id: products.length };
     try {
       const url = "https://64fc905e605a026163ae9e9e.mockapi.io/products";
       const addNewData = await axios.post(url, obj);
@@ -60,7 +58,7 @@ const FormContainer = () => {
           price: "",
           initialBalance: "",
           discount: "",
-          decription: "",
+          description: "",
           productsGroup: "",
         }}
         onSubmit={submitHandler}
@@ -68,9 +66,9 @@ const FormContainer = () => {
         <Form>
           <div className="w-full flex flex-row  flex-wrap  gap-x-3 gap-y-4">
             <h3 className=" w-full f-bold text-lg mb-4">مشخصات محصول</h3>
-            <FormInputsBox />
+            <FormInputsBox img={imgUrl} />
             <h3 className=" w-full f-bold text-lg my-3">آپلود تصویر محصول</h3>
-            <UploaderBox data={{ img, setImg, uploadErr, imgUrl }} />
+            <UploaderBox data={{ uploadErr, imgUrl, uploader }} />
             <Button data={{ type: "submit", text: "ثبت اطلاعات" }} />
           </div>
         </Form>
@@ -79,7 +77,8 @@ const FormContainer = () => {
   );
 };
 
-const FormInputsBox = () => {
+const FormInputsBox = ({ img }) => {
+  const i = String(img);
   return (
     <>
       <Input
@@ -121,7 +120,7 @@ const FormInputsBox = () => {
         data={{
           type: "number",
           placeHolderText: "توضیحات محصول",
-          name: "decription",
+          name: "description",
         }}
       />
     </>
@@ -129,7 +128,7 @@ const FormInputsBox = () => {
 };
 
 const UploaderBox = ({ data }) => {
-  const { img, setImg, uploadErr, imgUrl } = data;
+  const { uploadErr, imgUrl, uploader } = data;
   return (
     <div className="w-full h-36 rounded-md bg-gray-200 flex flex-row justify-around items-center content-center">
       <p className="w-[280px] text-sm text-justify">
@@ -145,10 +144,14 @@ const UploaderBox = ({ data }) => {
             <span>توجه :</span>
             در هنگام آپلود دقت کنید که ابعاد تصویر به صورت مربع باشد، و همچنین
             از فرمت های مجاز jpeg,png,jpg استفاده کنید.
+            <span className="f-bold ">
+              همچنین تا نمایان شدن تصویر آپلود شده خود شکیبایی کنید، وبر روی
+              دکمه "ثبت اطلاعات" را کلیک نکنید.
+            </span>
           </>
         )}
       </p>
-      <InputFile changeHandler={(e) => setImg(e.target.files[0])} />
+      <InputFile changeHandler={uploader} />
       <div className="w-[280px] h-[80%]">
         <img src={imgUrl} className="h-[80%]" alt="" />
       </div>
