@@ -10,6 +10,7 @@ const Input = ({ data }) => {
         type={type}
         name={name}
         placeholder={placeHolderText}
+        required
       />
       <div
         className="h-[3px] w-full bg-sky-950/80 transition-all duration-200 absolute top-[44px] right-[100%]
