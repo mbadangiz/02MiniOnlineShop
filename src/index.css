@@ -6,7 +6,20 @@
   .w-1280max {
     @apply xl:max-w-7xl;
   }
+  .lastTh:last-child td:first-child {
+    @apply rounded-br-lg;
+  }
+  .lastTh:last-child td:last-child {
+    @apply rounded-bl-lg;
+  }
+  .lastTh:nth-child(even) td {
+    @apply bg-gray-200;
+  }
+  .lastTh:nth-child(odd) td {
+    @apply bg-gray-100;
+  }
 }
+
 @layer utilities {
   .shadow__nav {
     -webkit-box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.04);

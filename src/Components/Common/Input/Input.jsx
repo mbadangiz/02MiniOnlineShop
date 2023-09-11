@@ -4,9 +4,12 @@ const Input = ({ data }) => {
   const { type, placeHolderText, name } = data;
   return (
     <div
-      className={`${type === "number" ? "w-[218px]" : "w-[330px] "}
+      className={`${
+        type === "number" ? " lg:w-[170px] xl:w-[218px]" : "w-[330px] "
+      }
       h-12 relative overflow-hidden  `}
     >
+      {/* // <div className={`w-[250px] h-12 relative overflow-hidden  `}> */}
       <Field
         className={`w-full h-full bg-gray-200 text-sky-950 
         rounded-t-md px-4 peer ${type === "number" && "text-center"} `}

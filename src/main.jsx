@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import CMS from "./Components/CMS/CMS";
 import AddNewProducts from "./Components/AddNewProducts/AddNewProducts";
+import CMSProductList from "./Components/CMSProductList/CMSProductList";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
         path: "/cms",
         element: <CMS />,
         children: [
-          { path: "/cms/", element: "productsList" },
+          { path: "/cms/", element: <CMSProductList /> },
           { path: "/cms/addNewProduct", element: <AddNewProducts /> },
         ],
       },

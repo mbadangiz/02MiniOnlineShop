@@ -11,7 +11,7 @@ const FormContainer = () => {
     <div className="w-full h-max my-10">
       <Formik>
         <Form>
-          <div className="w-full flex flex-row gap-x-3 gap-y-4 flex-wrap">
+          <div className="w-full flex flex-row  flex-wrap  gap-x-3 gap-y-4">
             <h3 className=" w-full f-bold text-lg mb-4">مشخصات محصول</h3>
             <>
               <Input

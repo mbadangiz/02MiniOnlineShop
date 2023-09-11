@@ -3,7 +3,7 @@ import FormContainer from "../FormContainer/FormContainer";
 
 const AddNewProducts = () => {
   return (
-    <div className="max-w-5xl h-full py-10 mx-auto">
+    <div className="lg:max-w-5xl h-full mx-auto">
       <CMSFieldsTitles text="افزودن محصول جدید" />
       <FormContainer />
     </div>
