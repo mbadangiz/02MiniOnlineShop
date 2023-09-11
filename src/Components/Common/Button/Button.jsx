@@ -1,11 +1,11 @@
 const Button = ({ data }) => {
-  const { type, text } = data;
+  const { type, text, size } = data;
   return (
     <div>
       <button
-        className="w-[300px] h-12 bg-gradient-to-br 
-        -from-[10%] from-cyan-600 to-80% to-sky-950 text-white
-        rounded my-4"
+        className={`${
+          size === "small" ? "w-max text-sm px-4 py-2" : "w-[300px] h-12"
+        }   bg-sky-950 text-white f-bold   rounded my-4`}
         type={type}
       >
         {text}

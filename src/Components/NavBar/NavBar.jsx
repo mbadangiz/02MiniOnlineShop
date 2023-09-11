@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const navItemsList = [
@@ -14,7 +15,7 @@ const navItemsList = [
 
 const NavBar = () => {
   return (
-    <div className="w-1280max h-full mx-auto flex flex-row flex-wrap gap-x-5 items-center content-center">
+    <div className="w-1280max h-full mx-auto flex flex-row flex-wrap gap-x-5 items-center content-center sticky top-0">
       {navItemsList.map((item) => (
         <NavItems key={item.id} data={item} />
       ))}

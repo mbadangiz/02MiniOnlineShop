@@ -8,13 +8,23 @@ import Home from "./Components/Home/Home";
 import CMS from "./Components/CMS/CMS";
 import AddNewProducts from "./Components/AddNewProducts/AddNewProducts";
 import CMSProductList from "./Components/CMSProductList/CMSProductList";
+import ProductsList from "./Components/ProductsList/ProductsList";
+import Header from "./Components/Header/Header";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Home /> },
+      {
+        path: "/",
+        element: <Home />,
+        children: [
+          { path: "/", element: <Header /> },
+          { path: "/products", element: <ProductsList /> },
+        ],
+      },
+
       {
         path: "/cms",
         element: <CMS />,
@@ -28,7 +38,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={router} />
+  // </React.StrictMode>
 );
