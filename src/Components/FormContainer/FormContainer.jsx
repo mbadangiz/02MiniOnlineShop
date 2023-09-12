@@ -39,7 +39,12 @@ const FormContainer = () => {
       second: "numeric",
     });
     const obj = { ...val, imgSrc: imgUrl, date: date };
-    const obj2 = { ...val, imgSrc: imgUrl, date: date, id: products.length };
+    const obj2 = {
+      ...val,
+      imgSrc: imgUrl,
+      date: date,
+      id: products.length + 1,
+    };
     try {
       const url = "https://64fc905e605a026163ae9e9e.mockapi.io/products";
       const addNewData = await axios.post(url, obj);
