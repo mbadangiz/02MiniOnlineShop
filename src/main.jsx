@@ -11,6 +11,8 @@ import CMSProductList from "./Components/CMSProductList/CMSProductList";
 import ProductsList from "./Components/ProductsList/ProductsList";
 import Header from "./Components/Header/Header";
 import ProductsDetail from "./Components/ProductsDetail/ProductsDetail";
+import EditProducts from "./Components/EditProducts/EditProducts";
+import Page404 from "./Components/Page404/Page404";
 
 const router = createBrowserRouter([
   {
@@ -32,10 +34,12 @@ const router = createBrowserRouter([
         children: [
           { path: "/cms/", element: <CMSProductList /> },
           { path: "/cms/addNewProduct", element: <AddNewProducts /> },
+          { path: "/cms/editProduct", element: <EditProducts /> },
         ],
       },
     ],
   },
+  { path: "*", element: <Page404 /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

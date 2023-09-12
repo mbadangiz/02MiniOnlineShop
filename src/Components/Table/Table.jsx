@@ -44,17 +44,7 @@ const Table = () => {
 export default Table;
 
 const TableRow = ({ data, isModalShow }) => {
-  const {
-    title,
-    description,
-    date,
-    initialBalance,
-    price,
-    discount,
-    productsGroup,
-    imgSrc,
-    id,
-  } = data;
+  const { title, date, price, imgSrc, id } = data;
   const [isModal, setIsModal] = useState(false);
 
   return (
@@ -70,13 +60,12 @@ const TableRow = ({ data, isModalShow }) => {
         <ModalDelete data={{ isModal, setIsModal, id }} />
         <i
           className="fi fi-sr-trash cursor-pointer hover:text-sky-950/90 transition-all duration-200 "
-          onClick={() => {
-            setIsModal(!isModal);
-            // console.log(isModal);
-          }}
+          onClick={() => setIsModal(!isModal)}
         ></i>
-        <i className="fi fi-sr-edit cursor-pointer hover:text-sky-950/90 transition-all duration-200 "></i>
-        <Link to={`/productDetail?pId=${id}`}>
+        <Link to={`/cms/editProduct?pId=${id}`}>
+          <i className="fi fi-sr-edit cursor-pointer hover:text-sky-950/90 transition-all duration-200 "></i>
+        </Link>
+        <Link to={`/productDetail?pId=${id}`} target="_blank">
           <i className="fi fi-sr-eye cursor-pointer hover:text-sky-950/90 transition-all duration-200 "></i>
         </Link>
       </td>

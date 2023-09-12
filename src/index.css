@@ -35,6 +35,9 @@
   .f-black {
     font-family: "KalamehWeb-Black";
   }
+  .f-semiBold {
+    font-family: "KalamehWeb-SemiBold";
+  }
   .strok {
     border: 7px dashed #082f49;
   }

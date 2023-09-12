@@ -2,13 +2,13 @@ import { Form, Formik } from "formik";
 import Input from "../Common/Input/Input";
 import TextArea from "../Common/TextArea/TextArea";
 import InputFile from "../Common/InputFile/InputFile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Common/Button/Button";
 import axios from "axios";
 import { useProducts } from "../Provider/ProductsDataProvider";
 import { useNavigate } from "react-router-dom";
 
-const FormContainer = () => {
+const FormContainer = ({ processType, initial, id, img }) => {
   const [imgUrl, setImgUrl] = useState();
   const [uploadErr, setUploadErr] = useState(false);
   const { products, setProducts } = useProducts();
@@ -39,16 +39,34 @@ const FormContainer = () => {
       second: "numeric",
     });
     const obj = { ...val, imgSrc: imgUrl, date: date };
-    const obj2 = {
-      ...val,
-      imgSrc: imgUrl,
-      date: date,
-      id: products.length + 1,
-    };
+
     try {
-      const url = "https://64fc905e605a026163ae9e9e.mockapi.io/products";
-      const addNewData = await axios.post(url, obj);
-      setProducts([...products, obj2]);
+      if (processType === "add") {
+        const obj2 = {
+          ...val,
+          imgSrc: imgUrl,
+          date: date,
+          id: products.length + 1,
+        };
+        const url = `https://64fc905e605a026163ae9e9e.mockapi.io/products`;
+        const addNewData = await axios.post(url, obj);
+        setProducts([...products, obj2]);
+      } else {
+        const url = `https://64fc905e605a026163ae9e9e.mockapi.io/products/${id}`;
+        const upDateProducts = await axios.put(url, obj);
+        const copiedItems = [...products];
+        const index = copiedItems.findIndex((item) => item.id === id);
+        const selectedItem = copiedItems[index];
+        selectedItem.title = val.title;
+        selectedItem.price = val.price;
+        selectedItem.initialBalance = val.price_unit;
+        selectedItem.discount = val.discount;
+        selectedItem.description = val.description;
+        selectedItem.productsGroup = val.productsGroup;
+        selectedItem.imgSrc = imgUrl ? imgUrl : img;
+
+        setProducts(copiedItems);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -56,25 +74,18 @@ const FormContainer = () => {
   };
 
   return (
-    <div className="w-full h-max my-10">
-      <Formik
-        initialValues={{
-          title: "",
-          price: "",
-          initialBalance: "",
-          discount: "",
-          description: "",
-          productsGroup: "",
-        }}
-        onSubmit={submitHandler}
-      >
+    <div className="w-full h-max my-5">
+      <Formik initialValues={initial} onSubmit={submitHandler}>
         <Form>
           <div className="w-full flex flex-row  flex-wrap  gap-x-3 gap-y-4">
-            <h3 className=" w-full f-bold text-lg mb-4">مشخصات محصول</h3>
-            <FormInputsBox img={imgUrl} />
-            <h3 className=" w-full f-bold text-lg my-3">آپلود تصویر محصول</h3>
-            <UploaderBox data={{ uploadErr, imgUrl, uploader }} />
-            <Button data={{ type: "submit", text: "ثبت اطلاعات" }} />
+            <h3 className=" w-full f-bold text-lg mb-2">مشخصات محصول</h3>
+            <FormInputsBox />
+            <h3 className=" w-full f-bold text-lg my-2">آپلود تصویر محصول</h3>
+            <UploaderBox
+              data={{ uploadErr, uploader }}
+              imageSRC={imgUrl ? imgUrl : img}
+            />
+            <Button btnData={{ type: "submit", text: "ثبت اطلاعات" }} />
           </div>
         </Form>
       </Formik>
@@ -82,8 +93,7 @@ const FormContainer = () => {
   );
 };
 
-const FormInputsBox = ({ img }) => {
-  const i = String(img);
+const FormInputsBox = () => {
   return (
     <>
       <Input
@@ -132,7 +142,7 @@ const FormInputsBox = ({ img }) => {
   );
 };
 
-const UploaderBox = ({ data }) => {
+const UploaderBox = ({ data, imageSRC }) => {
   const { uploadErr, imgUrl, uploader } = data;
   return (
     <div className="w-full h-36 rounded-md bg-gray-200 flex flex-row justify-around items-center content-center">
@@ -158,7 +168,7 @@ const UploaderBox = ({ data }) => {
       </p>
       <InputFile changeHandler={uploader} />
       <div className="w-[280px] h-[80%]">
-        <img src={imgUrl} className="h-[80%]" alt="" />
+        <img src={imageSRC} className="h-[80%]" alt="" />
       </div>
     </div>
   );

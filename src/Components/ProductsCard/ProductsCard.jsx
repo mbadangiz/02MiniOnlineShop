@@ -4,7 +4,7 @@ import Button from "../Common/Button/Button";
 const ProductsCard = ({ data }) => {
   return (
     <div className="w-[400px] h-60 bg-white rounded-lg px-5 py-3  box-shadow-card flex flex-row items-center content-center  ">
-      <img src="./../Img/Img-Products.jpg" className="w-32" alt="" />
+      <img src={data.imgSrc} className="w-32 h-32 ml-2" alt="" />
       <ProductCardBody data={data} />
     </div>
   );
@@ -46,7 +46,7 @@ const ProductCardBody = ({ data }) => {
       )}
       <Link to={`/productDetail?pId=${data.id}`}>
         <Button
-          data={{ type: "button", text: "مشاهده ی جزئیات", size: "small" }}
+          btnData={{ type: "button", text: "مشاهده ی جزئیات", size: "small" }}
         />
       </Link>
     </div>

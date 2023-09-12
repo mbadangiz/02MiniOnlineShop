@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 
 const ProductsDetail = () => {
   const [queryString] = useSearchParams();
@@ -20,7 +21,7 @@ const ProductsDetail = () => {
 
   useEffect(() => {
     getData();
-  }, [products]);
+  }, []);
   return (
     <div
       className="w-1280max h-[calc(100vh-60px)] mx-auto pt-10 flex flex-row flex-wrap 
@@ -28,11 +29,7 @@ const ProductsDetail = () => {
     >
       {products ? (
         <>
-          <img
-            src="./../Img/Img-Products.jpg"
-            className="w-[400px] h-[500px]"
-            alt=""
-          />
+          <img src={products.imgSrc} className="w-[400px] h-[400px]" alt="" />
           <div className="w-[400px] space-y-5">
             <h1 className="f-bold text-xl">{products.title}</h1>
             <div className="w-max text-xs rounded-2xl text-gray-600 bg-gray-200 py-1 px-4 ">
@@ -71,9 +68,11 @@ const ProductsDetail = () => {
           </div>
         </>
       ) : err ? (
-        "There is Some Problem with connection please try later"
+        "There is Some Problem with connection please try later Or Product Has Not Found"
       ) : (
-        "pleaseWail"
+        <div className="w-full h-[300px] flex flex-row flex-wrap justify-center content-center items-center ">
+          <HashLoader color="#5b36d6" size={150} />
+        </div>
       )}
     </div>
   );

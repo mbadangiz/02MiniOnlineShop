@@ -9,7 +9,9 @@ const ProductsList = () => {
       <CMSFieldsTitles text="همه محصولات" />
       <div className="w-full h-max py-5 flex flex-row justify-center flex-wrap gap-x-6 gap-y-5 ">
         {products
-          ? products.map((items) => <ProductsCard key={items} data={items} />)
+          ? products.map((items) => (
+              <ProductsCard key={items.id} data={items} />
+            ))
           : "Please Wait to Data being Load."}
       </div>
     </div>
