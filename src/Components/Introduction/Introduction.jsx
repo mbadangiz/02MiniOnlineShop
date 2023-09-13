@@ -26,19 +26,19 @@ const Introduction = () => {
         <p>همچنین میتونید با من از طریق راه های ارتباطی زیر دنبال کنید :</p>
         <p className="text-3xl space-x-5">
           <Link to="https://t.me/theRealmbz" target="_blank">
-            <i className="fi fi-brands-telegram hover:text-cyan-500 transition-all duration-150 "></i>
+            <i className="fi fi-brands-telegram  transition-all duration-150  opacity-80 hover:opacity-100"></i>
           </Link>
           <Link to="https://instagram.com/realmbz1998" target="_blank">
-            <i className="fi fi-brands-instagram transition-all duration-150 "></i>
+            <i className="fi fi-brands-instagram transition-all duration-150 opacity-80 hover:opacity-100 "></i>
           </Link>
           <Link
             to="https://www.linkedin.com/in/mohammad-badangiz-0a904117b/"
             target="_blank"
           >
-            <i className="fi fi-brands-linkedin transition-all duration-150 "></i>
+            <i className="fi fi-brands-linkedin transition-all duration-150 opacity-80 hover:opacity-100 "></i>
           </Link>
           <Link to="https://github.com/mbz3a" target="_blank">
-            <i className="fi fi-brands-github transition-all duration-150 "></i>
+            <i className="fi fi-brands-github transition-all duration-150  opacity-80 hover:opacity-100"></i>
           </Link>
         </p>
       </div>

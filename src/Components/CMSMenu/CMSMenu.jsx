@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const CMSMenuItemsList = [
   {
@@ -16,6 +16,7 @@ const CMSMenuItemsList = [
 ];
 
 const CMSMenu = () => {
+  // const activeMenu
   return (
     <div
       className="w-1/5  px-5 py-20 border-l-[4px]
@@ -46,12 +47,24 @@ const CMSMenu = () => {
 const CMSMenuItems = ({ data }) => {
   const { text, icon, path } = data;
   return (
-    <Link to={path} className="opacity-80 hover:opacity-100 transition-all">
+    <NavLink
+      to={path}
+      // className="opacity-70 hover:opacity-100 transition-all"
+      className={({ isActive, isPending }) =>
+        isPending
+          ? "opacity-70"
+          : isActive
+          ? "opacity-100 "
+          : "opacity-70 hover:opacity-100"
+      }
+    >
       <div className="w-full flex flex-row content-center items-center gap-x-3 py-3">
         <i className={`${icon} text-2xl relative top-1`}></i>
-        <p className="text-[17px]">{text}</p>
+        <p className="text-[17px] border-b-2 border-b-solid border-b-sky-900">
+          {text}
+        </p>
       </div>
-    </Link>
+    </NavLink>
   );
 };
 

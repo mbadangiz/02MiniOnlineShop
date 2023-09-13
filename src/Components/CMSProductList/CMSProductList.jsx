@@ -1,4 +1,5 @@
 import CMSFieldsTitles from "../CMSFieldsTitles/CMSFieldsTitles";
+import NoProducts from "../NoProducts/NoProducts";
 import { useProducts } from "../Provider/ProductsDataProvider";
 import Table from "../Table/Table";
 
@@ -11,10 +12,10 @@ const CMSProductList = () => {
         products.length > 0 ? (
           <Table data={products} />
         ) : (
-          "There Is No Product in Your DataBase"
+          <NoProducts />
         )
       ) : (
-        "There Is No Product in Your DataBase"
+        <NoProducts />
       )}
     </div>
   );

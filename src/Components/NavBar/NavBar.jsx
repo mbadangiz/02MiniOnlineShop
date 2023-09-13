@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const navItemsList = [
   {
@@ -28,10 +28,10 @@ export default NavBar;
 const NavItems = ({ data }) => {
   const { navTitle, extraClass, path } = data;
   return (
-    <Link to={path}>
+    <NavLink to={path}>
       <div className={`${extraClass}  text-sky-700 hover:text-sky-900`}>
         {navTitle}
       </div>
-    </Link>
+    </NavLink>
   );
 };
