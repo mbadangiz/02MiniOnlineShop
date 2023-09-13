@@ -7,29 +7,42 @@ import Button from "../Common/Button/Button";
 import axios from "axios";
 import { useProducts } from "../Provider/ProductsDataProvider";
 import { useNavigate } from "react-router-dom";
+import WaitingForForms from "../WaitingForForms/WaitingForForms";
+import { BarLoader, ClockLoader } from "react-spinners";
 
 const FormContainer = ({ processType, initial, id, img }) => {
   const [imgUrl, setImgUrl] = useState();
   const [uploadErr, setUploadErr] = useState(false);
   const { products, setProducts } = useProducts();
+  const [isWait, setWait] = useState(false);
+  const [isSpinner, setIsSpinner] = useState(false);
+
   const navigate = useNavigate();
 
   const uploader = async (e) => {
+    setIsSpinner(true);
     const img = e.target.files[0];
     try {
       const imageData = new FormData();
       imageData.append("image", img);
 
       const url = "https://api.admin.sepehracademy.ir/api/upload/image";
-      const imgUp = await axios.post(url, imageData);
 
+      const imgUp = await axios.post(url, imageData);
+      if (imgUp.status === 200) {
+        setIsSpinner(false);
+      }
       setImgUrl(imgUp.data.result);
     } catch (err) {
+      if (err) {
+        setIsSpinner(false);
+      }
       setUploadErr(true);
     }
   };
 
   const submitHandler = async (val) => {
+    setWait(!isWait);
     const date = new Date().toLocaleDateString("fa-IR", {
       year: "numeric",
       month: "long",
@@ -70,11 +83,13 @@ const FormContainer = ({ processType, initial, id, img }) => {
     } catch (err) {
       console.log(err);
     }
+    setWait(!isWait);
     navigate("/cms/");
   };
 
   return (
     <div className="w-full h-max my-5">
+      <WaitingForForms isShowWaiting={isWait} />
       <Formik initialValues={initial} onSubmit={submitHandler}>
         <Form>
           <div className="w-full flex flex-row  flex-wrap  gap-x-3 gap-y-4">
@@ -84,6 +99,7 @@ const FormContainer = ({ processType, initial, id, img }) => {
             <UploaderBox
               data={{ uploadErr, uploader }}
               imageSRC={imgUrl ? imgUrl : img}
+              spinnerShow={isSpinner}
             />
             <Button btnData={{ type: "submit", text: "ثبت اطلاعات" }} />
           </div>
@@ -142,7 +158,7 @@ const FormInputsBox = () => {
   );
 };
 
-const UploaderBox = ({ data, imageSRC }) => {
+const UploaderBox = ({ data, imageSRC, spinnerShow }) => {
   const { uploadErr, imgUrl, uploader } = data;
   return (
     <div className="w-full h-36 rounded-md bg-gray-200 flex flex-row justify-around items-center content-center">
@@ -167,8 +183,12 @@ const UploaderBox = ({ data, imageSRC }) => {
         )}
       </p>
       <InputFile changeHandler={uploader} />
-      <div className="w-[280px] h-[80%]">
-        <img src={imageSRC} className="h-[80%]" alt="" />
+      <div className="w-[280px] h-[80%] flex flex-row justify-center items-center content-center">
+        {spinnerShow ? (
+          <ClockLoader color="#082f49" size={50} />
+        ) : (
+          <img src={imageSRC} className="h-[80%]" alt="" />
+        )}
       </div>
     </div>
   );
