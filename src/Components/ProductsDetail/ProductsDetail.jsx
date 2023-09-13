@@ -71,7 +71,7 @@ const ProductsDetail = () => {
         "There is Some Problem with connection please try later Or Product Has Not Found"
       ) : (
         <div className="w-full h-[300px] flex flex-row flex-wrap justify-center content-center items-center ">
-          <HashLoader color="#5b36d6" size={150} />
+          <HashLoader color="#0ea5e9" size={150} />
         </div>
       )}
     </div>

@@ -49,9 +49,3 @@ const ModalDelete = ({ data }) => {
 };
 
 export default ModalDelete;
-{
-  /* <HashLoader
-  color="#132d72"
-  size={100}
-/> */
-}

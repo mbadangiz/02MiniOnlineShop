@@ -13,6 +13,7 @@ import Header from "./Components/Header/Header";
 import ProductsDetail from "./Components/ProductsDetail/ProductsDetail";
 import EditProducts from "./Components/EditProducts/EditProducts";
 import Page404 from "./Components/Page404/Page404";
+import Introduction from "./Components/Introduction/Introduction";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
           { path: "/", element: <Header /> },
           { path: "/products", element: <ProductsList /> },
           { path: "/productDetail", element: <ProductsDetail /> },
+          { path: "/Introduction", element: <Introduction /> },
         ],
       },
       {

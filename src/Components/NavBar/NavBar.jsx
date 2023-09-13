@@ -10,7 +10,7 @@ const navItemsList = [
   },
   { id: 2, navTitle: "مدیریت محتوا", path: "/cms" },
   { id: 3, navTitle: "محصولات", path: "/products" },
-  { id: 4, navTitle: "ارتباط با ما", path: "/contactus" },
+  { id: 4, navTitle: "معرفی", path: "/Introduction" },
 ];
 
 const NavBar = () => {
